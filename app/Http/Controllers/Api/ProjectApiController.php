@@ -93,10 +93,20 @@ class ProjectApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete($id)
     {
-        //
+        $project = Project::find($id);
+    
+        if (!$project) {
+            return redirect('/')->with('error', 'Project not found');
+        }
+    
+        $project->delete();
+    
+        return redirect('/')->with('success', 'Project deleted successfully!');
     }
+    
+    
 
     public function getBySdg($sdg)
 {

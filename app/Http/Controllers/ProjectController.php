@@ -21,7 +21,7 @@ class ProjectController extends Controller {
                 'upcoming_project' => 'sometimes|boolean',
                 'start_date' => 'nullable|date',
                 'description' => 'nullable|string',
-                'photo' => 'required|file|mimes:jpeg,png,jpg,gif|max:6000',
+                'photo' => 'required|file|mimes:jpeg,png,jpg,gif|max:1536',
             ]);
 
             // Read file contents for storing as BLOB

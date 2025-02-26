@@ -27,6 +27,7 @@ Route::delete('/projects/{id}', [ProjectApiController::class, 'destroy']);
 Route::get('/projects/sdg/{id}', [ProjectApiController::class, 'getBySdg']);
 
 Route::get('/projects/{id}/edit', [ProjectApiController::class, 'edit'])->name('projects.edit');
+Route::get('/projects/{id}/delete', [ProjectApiController::class, 'delete'])->name('projects.delete');
 Route::post('/projects/{id}/update', [ProjectApiController::class, 'update'])->name('projects.update');    
 
 

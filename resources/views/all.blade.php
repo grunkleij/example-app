@@ -30,6 +30,10 @@
                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
                                 Edit
                             </a>
+                            <a href="{{ route('projects.delete', $project->id) }}" 
+                               class="bg-red-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 @endforeach
