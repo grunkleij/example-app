@@ -11,5 +11,9 @@ class Project extends Model {
         'project_name', 'sdg', 'upcoming_project', 'start_date', 'description', 'photo'
     ];
 
+    public function publications() {
+        return $this->hasMany(Publication::class, 'sdg', 'sdg');
+    }
+    
     
 }

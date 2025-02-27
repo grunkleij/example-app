@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SDGController;
+use App\Models\Publication;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Api\ProjectApiController;
+use App\Models\Project;
 
 
 // Route::get("/", function(){
@@ -15,8 +18,13 @@ use App\Http\Controllers\Api\ProjectApiController;
 Route::get('/', [SDGController::class, 'index'])->name('goals');
 Route::get('/goalpage', [SDGController::class, 'index'])->name('goals');
 Route::get('/goalpage/{id}', [SDGController::class, 'show'])->name('goal.details');
+Route::get('/projectpage/{id}',[SDGController::class,'showproject'])->name('projectpage.page');
+Route::resource('publications', controller: Publication::class);
+
+Route::post('/publications', [PublicationController::class, 'store'])->name('publications.store');
 
 
+// Route::get('/goalpage/{id}', [SDGController::class, 'showproject'])->name('goal.details');
 
 
 
@@ -27,6 +35,10 @@ Route::get('/goalpage/{id}', [SDGController::class, 'show'])->name('goal.details
 
 Route::get('/in', function () {
     return view('welcome');
+});
+Route::get('/in/publication', function () {
+    $projects = Project::all(); // Fetch all projects from the database
+    return view('addnewpublication', compact('projects'));
 });
 Route::get('/test', [ProjectApiController::class,'allIndex']);
 Route::get('/edit', function () {
