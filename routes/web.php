@@ -4,10 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Api\ProjectApiController;
 
+
+Route::get("/", function(){
+    return view("home");
+});
+
+
+
+
+
 Route::get('/in', function () {
     return view('welcome');
 });
-Route::get('/', [ProjectApiController::class,'allIndex']);
+Route::get('/test', [ProjectApiController::class,'allIndex']);
 Route::get('/edit', function () {
     return view('edit');
 });
