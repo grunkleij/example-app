@@ -1,13 +1,25 @@
 <?php
 
+use App\Http\Controllers\SDGController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Api\ProjectApiController;
 
 
-Route::get("/", function(){
-    return view("home");
-});
+// Route::get("/", function(){
+//     return view("home");
+// });
+// Route::get("/goalpage", function(){
+//     return view("goalpage");
+// });
+Route::get('/', [SDGController::class, 'index'])->name('goals');
+Route::get('/goalpage', [SDGController::class, 'index'])->name('goals');
+Route::get('/goalpage/{id}', [SDGController::class, 'show'])->name('goal.details');
+
+
+
+
+
 
 
 

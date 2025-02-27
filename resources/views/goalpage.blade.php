@@ -5,14 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <link rel="stylesheet" href="{{ asset('css/hero.css') }}">
-
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+    <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}">
     <style>
+         <style>
          .icontainer {
             min-height: 100vh;
             padding: 20px;
@@ -117,28 +112,26 @@
             }
         }
     </style>
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 
 <body>
     @include('layouts.navbar')
-    @include('layouts.hero')
-    @include('layouts.about')
-    <div class="icontainer">
-        <div class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">Goals</div>
-        <div class="card-containerr">
-            @foreach ($goals as $goal)
-                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd" style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
-                    <img class="icon-imagee" src="{{ asset($goal['iconImage']) }}" alt="Icon {{ $goal['id'] + 1 }}">
-                    <div class="overlayy">
-                        <h2>{{ $goal['text'] }}</h2>
-                    </div>
-                    <div class="extra-infoo">
-                        <p>{{ $goal['text'] }}</p>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </div>
+    @include('layouts.herogoalpage', ['goalNumber' => 3]) 
+    @include('layouts.aboutgoal', ['goalHeading' => $goal['heading'], 'goalabout' => $goal['about_goal']])
+
+    <!-- <div class="container">
+        <h1>{{ $goal['heading'] }}</h1>
+        <p>{{ $goal['about_goal'] }}</p>
+    </div> -->
+    @include('layouts.goalicons', ['goals' => $goals])
+
+</body>
 </body>
 
 </html>
