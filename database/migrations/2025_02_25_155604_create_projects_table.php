@@ -11,10 +11,12 @@ return new class extends Migration {
             $table->integer('sdg');
             $table->boolean('upcoming_project')->default(false);
             $table->date('start_date')->nullable();
-            $table->text('description')->nullable();
-            $table->binary('photo'); // BLOB field for storing images
+            $table->json('addressed_sdg')->nullable();
+            $table->text(column: 'description')->nullable();
+            // $table->binary('photo'); // BLOB field for storing images
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE projects ADD COLUMN photo LONGBLOB");
     }
 
     public function down() {

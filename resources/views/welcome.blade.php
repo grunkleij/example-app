@@ -67,6 +67,20 @@
                 <input type="file" name="photo" accept="image/*" required
                     class="w-full border border-gray-300 rounded px-3 py-2">
             </div>
+            <div>
+                <label class="block text-gray-700 font-semibold">Addressed SDGs</label>
+                <div class="grid grid-cols-2 gap-2">
+                    @foreach([1 => 'No Poverty', 2 => 'Zero Hunger', 3 => 'Good Health and Well-being', 4 => 'Quality Education', 5 => 'Gender Equality', 6 => 'Clean Water and Sanitation', 7 => 'Affordable and Clean Energy', 8 => 'Decent Work and Economic Growth', 9 => 'Industry, Innovation, and Infrastructure', 10 => 'Reduced Inequality', 11 => 'Sustainable Cities and Communities', 12 => 'Responsible Consumption and Production', 13 => 'Climate Action', 14 => 'Life Below Water', 15 => 'Life on Land', 16 => 'Peace, Justice, and Strong Institutions', 17 => 'Partnerships for the Goals'] as $key => $value)
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" name="addressed_sdg[]" value="{{ $key }}"
+                                class="rounded border-gray-300">
+                            <span>{{ $value }}</span>
+                        </label>
+                    @endforeach
+                </div>
+            </div>
+
+
             <div class="flex justify-center">
                 <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -83,7 +97,7 @@
                 header: {
                     class: Header,
                     inlineToolbar: true,
-                    config: { levels: [2, 3, 4], defaultLevel: 2}
+                    config: { levels: [2, 3, 4], defaultLevel: 2 }
                 },
                 paragraph: {
                     class: Paragraph,

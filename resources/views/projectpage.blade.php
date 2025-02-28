@@ -7,10 +7,10 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}">
     <style>
-          .icontainer {
+        .icontainer {
             min-height: 100vh;
             padding: 20px;
-           
+
             z-index: -1;
         }
 
@@ -21,7 +21,7 @@
             max-width: 100%;
             padding: 20px;
             border-radius: 10px;
-           
+
             justify-content: center;
         }
 
@@ -181,7 +181,8 @@
 
             .project-text {
                 font-size: 0.8rem;
-            }}
+            }
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
@@ -194,12 +195,29 @@
     @include('layouts.navbar')
     @include('layouts.herogoalpage', ['goalNumber' => 3]) 
     @include('layouts.aboutproject', ['goalHeading' => $project['project_name'], 'goalabout' => $project['description']])
+    <div class="m-20">
+        <h2 class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+            Addressed SDGs
+        </h2>
+    <div class="flex flex-wrap justify-center gap-4 mt-8">
+        @foreach ($project->addressed_sdg as $sdg)
+            <div class="flex flex-col items-center w-20">
+                <img class="w-full h-auto" src="{{ asset('/img/E_SDG_Icons-' . str_pad($sdg, 2, '0', STR_PAD_LEFT) . '.jpg') }}" alt="SDG {{ $sdg }}">
+                <h3 class="mt-2 text-lg font-semibold text-center text-gray-800">SDG {{ $sdg }}</h3>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 
     <div class="icontainer">
-        <div class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">Goals</div>
+        <div
+            class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">
+            Goals</div>
         <div class="card-containerr">
             @foreach ($goals as $goal)
-                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd" style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
+                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd"
+                    style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
                     <img class="icon-imagee" src="{{ asset($goal['iconImage']) }}" alt="Icon {{ $goal['id'] + 1 }}">
                     <div class="overlayy">
                         <h2>{{ $goal['text'] }}</h2>
