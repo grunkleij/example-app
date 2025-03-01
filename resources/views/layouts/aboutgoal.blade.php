@@ -28,9 +28,9 @@
     </div> -->
 
     {{-- Content --}}
-    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-slate-100">
         <div class="mx-auto max-w-2xl lg:mx-0">
-        <p class="text-5xl font-semibold tracking-tight text-black sm:text-6xl">
+            <p class="text-5xl font-semibold tracking-tight text-black sm:text-6xl">
                 {{ $goalHeading }}
             </p>
             <p class="mt-8 text-lg font-medium text-pretty text-black sm:text-xl/8">

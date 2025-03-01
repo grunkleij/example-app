@@ -122,7 +122,62 @@
 <body>
     @include('layouts.navbar')
     @include('layouts.hero')
+
+    <p>Number of Projects: {{ $projects1->count() }}</p>
+    <p>Number of publication    : {{ $publication1->count() }}</p>
+    <div class="grid grid-cols-2 gap-0 h-[50vh] py-4 px-10">
+        <!-- Left Side: Two SDG Tiles -->
+        <div class="flex flex-col gap-0">
+            <div class="bg-blue-500  text-white p-6 flex-1 flex flex-col justify-center items-center transition-transform duration-300 transform hover:scale-105 overflow-hidden">
+                <div class="mb-2">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L1 21h22L12 2zm0 3.3L19.6 19H4.4L12 5.3zM11 10v5h2v-5h-2zm0 6v2h2v-2h-2z"/>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold">SDG 1</h2>
+                <p class="text-lg">Projects: 10</p>
+                <p class="text-lg">Publications: 5</p>
+            </div>
+            <div class="bg-green-500 text-white p-6 flex-1 flex flex-col justify-center items-center transition-transform duration-300 transform hover:scale-105 overflow-hidden">
+                <div class="mb-2">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L1 21h22L12 2zm0 3.3L19.6 19H4.4L12 5.3zM11 10v5h2v-5h-2zm0 6v2h2v-2h-2z"/>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold">SDG 2</h2>
+                <p class="text-lg">Projects: {{$projects2->count()}}</p>
+                <p class="text-lg">Publications: {{ $publication2->count() }}</p>
+            </div>
+        </div>
+        
+        <!-- Right Side: One Large SDG Tile -->
+        <div class="bg-red-500 text-white p-6 flex flex-col justify-center items-center h-full transition-transform duration-300 transform hover:scale-105 overflow-hidden">
+            <div class="mb-2">
+                <svg class="w-14 h-14" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L1 21h22L12 2zm0 3.3L19.6 19H4.4L12 5.3zM11 10v5h2v-5h-2zm0 6v2h2v-2h-2z"/>
+                </svg>
+            </div>
+            <h2 class="text-3xl font-bold">SDG 3</h2>
+            <p class="text-lg">Projects: {{$projects3->count()}}</p>
+            <p class="text-lg">Publications: {{ $publication3->count() }}</p>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+   
+    
+    
+
+    
+
+
     @include('layouts.about')
+
+
     <div class="icontainer">
         <div class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">Goals</div>
         <div class="card-containerr">
@@ -139,6 +194,8 @@
             @endforeach
         </div>
     </div>
+
+    
 </body>
 
 </html>

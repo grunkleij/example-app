@@ -1,4 +1,4 @@
-<div id="test-section" class="relative isolate overflow-hidden  py-24 sm:py-32">
+<div id="test-section" class="relative isolate overflow-hidden  py-20 sm:py-[3.3rem]">
     <!-- {{-- Glassmorphism Shape --}}
     <div class="absolute inset-0 z-0 flex items-center justify-center">
         <div class="w-72 h-72 bg-green-300 rounded-full opacity-30 blur-3xl backdrop-blur-lg"></div>

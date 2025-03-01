@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 
-<body class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+<body class="">
+    {{-- @include('layouts.loginnavbar') --}}
+    <div class="w-[50%] mx-auto max-w-2xl bg-white shadow-lg rounded-lg p-6 ">
         <form method="POST" action="/input" enctype="multipart/form-data" class="space-y-4">
             @csrf
             <div>

@@ -3,6 +3,9 @@
 @endphp
 
 <div class="max-w-3xl left-50 p-6 bg-white rounded-2xl">
+    <p class="text-5xl font-semibold tracking-tight text-black sm:text-6xl">
+        {{ $goalHeading }}
+    </p>
     @if(is_array($goalContent) && isset($goalContent['blocks']))
         @foreach($goalContent['blocks'] as $block)
             @if(isset($block['type'], $block['data']['text']))

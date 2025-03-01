@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SDGController;
 use App\Models\Publication;
@@ -30,20 +31,55 @@ Route::post('/publications', [PublicationController::class, 'store'])->name('pub
 
 
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/in', function () {
+        return view('welcome');
+    });
+
+    Route::get('/in/publication', function () {
+        $projects = Project::all(); 
+        return view('addnewpublication', compact('projects'));
+    })->name('publications.index');
+
+    Route::get('/edit', function () {
+        return view('edit');
+    });
+
+    Route::post('/input', [ProjectController::class, 'store']);
+
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 
 
-Route::get('/in', function () {
-    return view('welcome');
-});
-Route::get('/in/publication', function () {
-    $projects = Project::all(); // Fetch all projects from the database
-    return view('addnewpublication', compact('projects'));
-});
-Route::get('/test', [ProjectApiController::class,'allIndex']);
-Route::get('/edit', function () {
-    return view('edit');
-});
+
+// Route::get('/in', function () {
+//     return view('welcome');
+// });
+// Route::get('/in/publication', function () {
+//     $projects = Project::all(); // Fetch all projects from the database
+//     return view('addnewpublication', compact('projects'));
+// });
+// Route::get('/allproject', [ProjectApiController::class,'allIndex']);
+// Route::get('/edit', function () {
+//     return view('edit');
+// });
 
 // Route::post('/input',)
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 
 class SDGController extends Controller
@@ -163,7 +164,13 @@ class SDGController extends Controller
             ],
         ];
 
-        return view('home', compact('goals'));
+        $publication1 = Publication::where('sdg', 1)->get();
+        $projects1 = Project::where('sdg', 1)->get();
+        $publication2 = Publication::where('sdg', 2)->get();
+        $projects2 = Project::where('sdg', 2)->get();
+        $publication3 = Publication::where('sdg', 3)->get();
+        $projects3 = Project::where('sdg', 3)->get();
+        return view('home', compact('goals', 'publication1', 'projects1', 'publication2', 'projects2','publication3', 'projects3', ));
     }
 
     public function show($id)
