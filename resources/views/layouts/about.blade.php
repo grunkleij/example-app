@@ -1,4 +1,4 @@
-<div id="test-section" class="relative isolate overflow-hidden  py-20 sm:py-[3.3rem]">
+<div id="test-section" class="relative isolate overflow-hidden  py-20  sm:py-[3.3rem]">
     <!-- {{-- Glassmorphism Shape --}}
     <div class="absolute inset-0 z-0 flex items-center justify-center">
         <div class="w-72 h-72 bg-green-300 rounded-full opacity-30 blur-3xl backdrop-blur-lg"></div>
@@ -30,9 +30,10 @@
     {{-- Content --}}
     <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-            <p class="text-5xl font-semibold tracking-tight text-black sm:text-6xl">
-                About Rajagiri SDG
-            </p>
+            <p class="text-5xl font-semibold tracking-tight sm:text-6xl" style="color: #004d4d;"> 
+    About Rajagiri SDG
+</p>
+
             <p class="mt-8 text-lg font-medium text-pretty text-black sm:text-xl/8">
                 Sustainability is at the heart of everything we do. When Chancellor Amma spoke at the United Nations in July 2015, she
                 stated, “I often reflect deeply on the future of the Earth, the preservation of nature, and the disappearing harmony

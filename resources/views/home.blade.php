@@ -119,13 +119,11 @@
     </style>
 </head>
 
-<body>
+<body class="bg-[#fdfaf4]">
     @include('layouts.navbar')
     @include('layouts.hero')
 
-    <p>Number of Projects: {{ $projects1->count() }}</p>
-    <p>Number of publication    : {{ $publication1->count() }}</p>
-    <div class="grid grid-cols-2 gap-0 h-[50vh] py-4 px-10">
+    {{-- <div class="grid grid-cols-2 gap-0 h-[50vh] py-4 px-10">
         <!-- Left Side: Two SDG Tiles -->
         <div class="flex flex-col gap-0">
             <div class="bg-blue-500  text-white p-6 flex-1 flex flex-col justify-center items-center transition-transform duration-300 transform hover:scale-105 overflow-hidden">
@@ -162,7 +160,7 @@
             <p class="text-lg">Publications: {{ $publication3->count() }}</p>
         </div>
     </div>
-    
+     --}}
     
     
     
@@ -179,7 +177,7 @@
 
 
     <div class="icontainer">
-        <div class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">Goals</div>
+        <div class="text-center text-5xl font-semibold  " style="color: #004d4d;">Goals</div>
         <div class="card-containerr">
             @foreach ($goals as $goal)
                 <a href="{{ route('goal.details', $goal['id']) }}" class="cardd" style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
