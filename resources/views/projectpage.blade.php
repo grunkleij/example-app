@@ -201,7 +201,7 @@
         </h2>
     <div class="flex flex-wrap  gap-0 mt-8">
         @foreach ($project->addressed_sdg as $sdg)
-            <div class="flex flex-col items-center w-20">
+            <div class="flex flex-col items-center w-20 ">
                 <img class="w-full h-auto" src="{{ asset('/img/E_SDG_Icons-' . str_pad($sdg, 2, '0', STR_PAD_LEFT) . '.jpg') }}" alt="SDG {{ $sdg }}">
                 {{-- <h3 class="mt-2 text-lg font-semibold text-center text-gray-800">SDG {{ $sdg }}</h3> --}}
             </div>

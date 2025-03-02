@@ -123,47 +123,43 @@
     @include('layouts.navbar')
     @include('layouts.hero')
 
-    {{-- <div class="grid grid-cols-2 gap-0 h-[50vh] py-4 px-10">
-        <!-- Left Side: Two SDG Tiles -->
-        <div class="flex flex-col gap-0">
-            <div class="bg-blue-500  text-white p-6 flex-1 flex flex-col justify-center items-center transition-transform duration-300 transform hover:scale-105 overflow-hidden">
-                <div class="mb-2">
-                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2L1 21h22L12 2zm0 3.3L19.6 19H4.4L12 5.3zM11 10v5h2v-5h-2zm0 6v2h2v-2h-2z"/>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold">SDG 1</h2>
-                <p class="text-lg">Projects: 10</p>
-                <p class="text-lg">Publications: 5</p>
-            </div>
-            <div class="bg-green-500 text-white p-6 flex-1 flex flex-col justify-center items-center transition-transform duration-300 transform hover:scale-105 overflow-hidden">
-                <div class="mb-2">
-                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2L1 21h22L12 2zm0 3.3L19.6 19H4.4L12 5.3zM11 10v5h2v-5h-2zm0 6v2h2v-2h-2z"/>
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-bold">SDG 2</h2>
-                <p class="text-lg">Projects: {{$projects2->count()}}</p>
-                <p class="text-lg">Publications: {{ $publication2->count() }}</p>
-            </div>
+    <div class="flex justify-center">
+        <div class="w-1/4 my-10 h-64 mx-5 relative bg-red-500 py-10 pl-3 pr-3"
+             style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                    background-size: cover; background-blend-mode: soft-light; opacity: 0.9;">
+            <h1 class="text-4xl font-extrabold bg-clip-text text-transparent"
+                style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
+                SDG 1
+            </h1>
+            <hr class="border-black my-1">
+            <p class="text-2xl font-semibold " >Projects {{$projects1->count()}}</p>
+            <p class="text-2xl font-semibold " >publications: {{$publication1->count()}}</p>
         </div>
-        
-        <!-- Right Side: One Large SDG Tile -->
-        <div class="bg-red-500 text-white p-6 flex flex-col justify-center items-center h-full transition-transform duration-300 transform hover:scale-105 overflow-hidden">
-            <div class="mb-2">
-                <svg class="w-14 h-14" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L1 21h22L12 2zm0 3.3L19.6 19H4.4L12 5.3zM11 10v5h2v-5h-2zm0 6v2h2v-2h-2z"/>
-                </svg>
-            </div>
-            <h2 class="text-3xl font-bold">SDG 3</h2>
-            <p class="text-lg">Projects: {{$projects3->count()}}</p>
-            <p class="text-lg">Publications: {{ $publication3->count() }}</p>
+    
+        <div class="w-1/4 my-10 h-64 mx-5 relative bg-yellow-500 py-10 pl-3 pr-3"
+             style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                    background-size: cover; background-blend-mode: soft-light; opacity: 0.9;">
+            <h1 class="text-4xl font-extrabold bg-clip-text text-transparent"
+                style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
+                SDG 2
+            </h1>
+            <hr class="border-black my-1">
+            <p class="text-2xl font-semibold " >Projects {{$projects2->count()}}</p>
+            <p class="text-2xl font-semibold " >publications: {{$publication2->count()}}</p>
+        </div>
+    
+        <div class="w-1/4 my-10 h-64 mx-5 relative bg-green-500 py-10 pl-3 pr-3"
+             style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                    background-size: cover; background-blend-mode: soft-light; opacity: 0.9;">
+            <h1 class="text-4xl font-extrabold bg-clip-text text-transparent"
+                style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
+                SDG 3
+            </h1>
+            <hr class="border-black my-1">
+            <p class="text-2xl font-semibold " >Projects {{$projects3->count()}}</p>
+            <p class="text-2xl font-semibold " >publications: {{$publication3->count()}}</p>
         </div>
     </div>
-     --}}
-    
-    
-    
     
     
    
