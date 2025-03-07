@@ -5,8 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}">
+    {{--
+    <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/projectgoal.css') }}">
     <style>
+        .hero {
+            color: rgb(213, 247, 220);
+            position: relative;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.90)),
+            url('data:image/jpeg;base64,{{ base64_encode($project->photo) }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 80vh;
+        }
+
         .icontainer {
             min-height: 100vh;
             padding: 20px;
@@ -199,15 +213,17 @@
         <h2 class=" text-2xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-[#004d4d]">
             Addressed SDGs
         </h2>
-    <div class="flex flex-wrap  gap-0 mt-8">
-        @foreach ($project->addressed_sdg as $sdg)
-            <div class="flex flex-col items-center w-20 ">
-                <img class="w-full h-auto" src="{{ asset('/img/E_SDG_Icons-' . str_pad($sdg, 2, '0', STR_PAD_LEFT) . '.jpg') }}" alt="SDG {{ $sdg }}">
-                {{-- <h3 class="mt-2 text-lg font-semibold text-center text-gray-800">SDG {{ $sdg }}</h3> --}}
-            </div>
-        @endforeach
+        <div class="flex flex-wrap  gap-0 mt-8">
+            @foreach ($project->addressed_sdg as $sdg)
+                <div class="flex flex-col items-center w-20 ">
+                    <img class="w-full h-auto"
+                        src="{{ asset('/img/E_SDG_Icons-' . str_pad($sdg, 2, '0', STR_PAD_LEFT) . '.jpg') }}"
+                        alt="SDG {{ $sdg }}">
+                    {{-- <h3 class="mt-2 text-lg font-semibold text-center text-gray-800">SDG {{ $sdg }}</h3> --}}
+                </div>
+            @endforeach
+        </div>
     </div>
-</div>
 
 
     <div class="icontainer">

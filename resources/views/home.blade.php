@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
     <style>
-         .icontainer {
+        .icontainer {
             min-height: 100vh;
             padding: 20px;
-           
+
             z-index: -1;
         }
 
@@ -27,7 +27,7 @@
             max-width: 100%;
             padding: 20px;
             border-radius: 10px;
-           
+
             justify-content: center;
         }
 
@@ -123,60 +123,63 @@
     @include('layouts.navbar')
     @include('layouts.hero')
 
-    <div class="flex justify-center">
-        <div class="w-1/4 my-10 h-64 mx-5 relative bg-red-500 py-10 pl-3 pr-3"
-             style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                    background-size: cover; background-blend-mode: soft-light; opacity: 0.9;">
-            <h1 class="text-4xl font-extrabold bg-clip-text text-transparent"
-                style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
-                SDG 1
-            </h1>
-            <hr class="border-black my-1">
-            <p class="text-2xl font-semibold " >Projects {{$projects1->count()}}</p>
-            <p class="text-2xl font-semibold " >publications: {{$publication1->count()}}</p>
-        </div>
-    
-        <div class="w-1/4 my-10 h-64 mx-5 relative bg-yellow-500 py-10 pl-3 pr-3"
-             style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                    background-size: cover; background-blend-mode: soft-light; opacity: 0.9;">
-            <h1 class="text-4xl font-extrabold bg-clip-text text-transparent"
-                style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
-                SDG 2
-            </h1>
-            <hr class="border-black my-1">
-            <p class="text-2xl font-semibold " >Projects {{$projects2->count()}}</p>
-            <p class="text-2xl font-semibold " >publications: {{$publication2->count()}}</p>
-        </div>
-    
-        <div class="w-1/4 my-10 h-64 mx-5 relative bg-green-500 py-10 pl-3 pr-3"
-             style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-                    background-size: cover; background-blend-mode: soft-light; opacity: 0.9;">
-            <h1 class="text-4xl font-extrabold bg-clip-text text-transparent"
-                style="background-image: url('https://images.unsplash.com/photo-1534312527009-56c7016453e6?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
-                SDG 3
-            </h1>
-            <hr class="border-black my-1">
-            <p class="text-2xl font-semibold " >Projects {{$projects3->count()}}</p>
-            <p class="text-2xl font-semibold " >publications: {{$publication3->count()}}</p>
-        </div>
-    </div>
-    
-    
    
-    
-    
+   
 
-    
+
+
+
+
+
+
+
+
+
 
 
     @include('layouts.about')
+
+   
+<div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+    <!-- First Item -->
+    <div class="relative bg-red-400 p-6 min-h-[300px] sm:h-22 rounded-lg overflow-hidden flex flex-col items-center justify-center text-black text-center"
+            style="background-image: url('https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=2024&auto=format&fit=crop');
+                background-size: cover; background-position: center; background-blend-mode: soft-light; opacity: 0.9;">
+        <hr class="border-black my-2 w-full">
+        <img src="/images/nopoverty.svg" alt="No Poverty" class="w-64    h-64">
+        <p class="text-md sm:text-xl md:text-2xl lg:text-2xl  font-bold">Projects {{ $projects1->count() }}</p>
+        <p class="text-md sm:text-xl md:text-2xl lg:text-2xl  font-bold">Publications: {{ $publication1->count() }}</p>
+    </div>
+
+    <!-- Second Item -->
+    <div class="relative bg-yellow-400 p-6 min-h-[300px] sm:h-22 rounded-lg overflow-hidden flex flex-col items-center justify-center text-black text-center"
+            style="background-image: url('https://images.unsplash.com/photo-1615749413727-825b59a857b5?q=80&w=1974&auto=format&fit=crop');
+                background-size: cover; background-position: center; background-blend-mode: soft-light; opacity: 0.9;">
+        <hr class="border-black my-2 w-full">
+        <img src="/images/sdg2svg.svg" alt="Zero Hunger" class="w-64     h-64">
+        <p class="text-md sm:text-xl md:text-2xl lg:text-2xl  font-bold">Projects {{ $projects2->count() }}</p>
+        <p class="text-md sm:text-xl md:text-2xl lg:text-2xl  font-bold">Publications: {{ $publication2->count() }}</p>
+    </div>
+
+    <!-- Third Item (Centered on Small Screens) -->
+    <div class="relative bg-green-400 p-6 min-h-[300px] sm:h-22 rounded-lg overflow-hidden flex flex-col items-center justify-center text-black text-center col-span-full sm:col-span-2 md:col-span-1"
+            style="background-image: url('https://images.unsplash.com/photo-1561212044-bac5ef688a07?q=80&w=1974&auto=format&fit=crop');
+                background-size: cover; background-position: center; background-blend-mode: soft-light; opacity: 0.9;">
+        <hr class="border-black my-2 w-full">
+        <img src="/images/sdg3svg.svg" alt="No Poverty" class="w-64  h-64">
+        <p class="text-md sm:text-xl md:text-2xl lg:text-2xl  font-bold">Projects {{ $projects3->count() }}</p>
+        <p class="text-md sm:text-xl md:text-2xl lg:text-2xl  font-bold">Publications: {{ $publication3->count() }}</p>
+    </div>
+</div>
+
 
 
     <div class="icontainer">
         <div class="text-center text-5xl font-semibold  " style="color: #004d4d;">Goals</div>
         <div class="card-containerr">
             @foreach ($goals as $goal)
-                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd" style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
+                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd"
+                    style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
                     <img class="icon-imagee" src="{{ asset($goal['iconImage']) }}" alt="Icon {{ $goal['id'] + 1 }}">
                     <div class="overlayy">
                         <h2>{{ $goal['text'] }}</h2>
@@ -189,7 +192,7 @@
         </div>
     </div>
 
-    
+
 </body>
 
 </html>

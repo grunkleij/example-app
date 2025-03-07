@@ -1,4 +1,4 @@
-<div class="hero hero flex h-screen/2 items-center justify-center">
+<div class="hero hero flex h-screen/3 items-center justify-center">
     <div class="">
     <div class="hero_content">
 

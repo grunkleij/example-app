@@ -15,7 +15,7 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <a href="{{ url('/') }}" class="flex shrink-0 items-center">
-                    <img alt="Your Company" src="https://rajagiri.edu/images/logo.png" class="h-8 w-auto">
+                    <img alt="Your Company" src="/images/logo.png" class="h-8 w-auto">
                 </a>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">

@@ -162,6 +162,16 @@ class SDGController extends Controller
                 'heading' => 'Peace, Justice, and Strong Institutions',
                 'about_goal' => 'Promoting peaceful and inclusive societies, providing access to justice for all, and building effective, accountable institutions are essential for sustainable development.',
             ],
+            [
+                'id' => 17,
+                'backgroundImage' => '/img/img-goal-17.jpg',
+                'iconImage' => '/img/E_SDG_Icons-17.jpg',
+                'overlayColor' => '#19486A',
+                'text' => 'Goal 17: Strengthen the means of implementation and revitalize the global partnership for sustainable development',
+                'heading' => 'Partnerships for the Goals',
+                'about_goal' => 'Achieving sustainable development requires global partnerships, financial resources, technology transfer, and capacity-building. Strong international cooperation is key to overcoming global challenges and ensuring progress for all.',
+            ],
+            
         ];
 
         $publication1 = Publication::where('sdg', 1)->get();
@@ -328,6 +338,16 @@ class SDGController extends Controller
                 'heading' => 'Peace, Justice, and Strong Institutions',
                 'about_goal' => 'Promoting peaceful and inclusive societies, providing access to justice for all, and building effective, accountable institutions are essential for sustainable development.',
             ],
+            [
+                'id' => 17,
+                'backgroundImage' => '/img/img-goal-17.jpg',
+                'iconImage' => '/img/E_SDG_Icons-17.jpg',
+                'overlayColor' => '#19486A',
+                'text' => 'Goal 17: Strengthen the means of implementation and revitalize the global partnership for sustainable development',
+                'heading' => 'Partnerships for the Goals',
+                'about_goal' => 'Achieving sustainable development requires global partnerships, financial resources, technology transfer, and capacity-building. Strong international cooperation is key to overcoming global challenges and ensuring progress for all.',
+            ],
+            
         ];
 
         $goal = collect($goals)->firstWhere('id', $id);

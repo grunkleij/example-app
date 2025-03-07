@@ -13,7 +13,19 @@
 
 <body class="">
     {{-- @include('layouts.loginnavbar') --}}
+    @if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
     <div class="w-[50%] mx-auto max-w-2xl bg-white shadow-lg rounded-lg p-6 ">
+
+
+
         <form method="POST" action="/input" enctype="multipart/form-data" class="space-y-4">
             @csrf
             <div>
