@@ -1,4 +1,5 @@
-<div id="test-section" class="relative isolate overflow-hidden  py-20  sm:py-[3.3rem]">
+<div id="test-section" class="relative isolate lg:flex h-full  lg:justify-between overflow-hidden  py-20  sm:py-[3.3rem]" >
+    
     <!-- {{-- Glassmorphism Shape --}}
     <div class="absolute inset-0 z-0 flex items-center justify-center">
         <div class="w-72 h-72 bg-green-300 rounded-full opacity-30 blur-3xl backdrop-blur-lg"></div>
@@ -48,5 +49,7 @@
                 democratic process of governance (in India).
             </p>
         </div>
+        
     </div>
+    @include('layouts.threepar',['publication1'=>$publication1, 'publication2'=>$publication2, 'publication3'=>$publication3, 'projects1'=>$projects1, 'projects2'=>$projects2, 'projects3'=>$projects3, ])
 </div>

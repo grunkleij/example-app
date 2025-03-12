@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/projectgoal.css') }}">
     <style>
+         body {
+            background: rgb(71, 161, 129);
+            background: linear-gradient(260deg, rgba(71, 161, 129, 0.9819327389158788) 0%, rgba(30, 189, 95, 0.12198876132484249) 0%, rgba(0, 212, 255, 0) 100%);
+        }
         .hero {
             color: rgb(213, 247, 220);
             position: relative;
@@ -210,10 +214,10 @@
     @include('layouts.herogoalpage', ['goalNumber' => 3]) 
     @include('layouts.aboutproject', ['goalHeading' => $project['project_name'], 'goalabout' => $project['description']])
     <div class="m-20">
-        <h2 class=" text-2xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-[#004d4d]">
+        <h2 class=" text-2Xl font-bold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-[#004d4d]" style="color:#004d4d;">
             Addressed SDGs
         </h2>
-        <div class="flex flex-wrap  gap-0 mt-8">
+        <div class="flex flex-wrap  gap-0 mt-4" >
             @foreach ($project->addressed_sdg as $sdg)
                 <div class="flex flex-col items-center w-20 ">
                     <img class="w-full h-auto"
@@ -225,11 +229,11 @@
         </div>
     </div>
 
+ 
 
-    <div class="icontainer">
-        <div
-            class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">
-            Goals</div>
+
+    <div class="icontainer mt-24">
+        <div class="text-center text-5xl font-semibold  " style="color: #004d4d;">Goals</div>
         <div class="card-containerr">
             @foreach ($goals as $goal)
                 <a href="{{ route('goal.details', $goal['id']) }}" class="cardd"

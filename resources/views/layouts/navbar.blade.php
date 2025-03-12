@@ -22,7 +22,7 @@
                         @php
                             $navItems = [
                                 ['name' => 'Home', 'href' => url('/')],
-                                ['name' => 'Projects', 'href' => url('/allProjectPage')],
+                                ['name' => 'Projects', 'href' => url('/allproject')],
                                 ['name' => 'Calendar', 'href' => url('/calendar')],
                             ];
                         @endphp

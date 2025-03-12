@@ -357,10 +357,12 @@ class SDGController extends Controller
         }
 
         $projects = Project::where('sdg', $id)->get();
+        $publications= Publication::where('sdg', $id)->get();
+
     
         // Pass projects and SDG ID to the view
 
-        return view('goalpage', compact('goal','goals', 'projects'));
+        return view('goalpage', compact('goal','goals', 'projects', 'publications'));
     }
 
     public function showproject($id) {
@@ -519,6 +521,7 @@ class SDGController extends Controller
             ],
         ];
         $project = Project::where('id', $id)->first();
+
     
         // Pass projects and SDG ID to the view
         return view('projectpage', compact('project' ,'goals'));

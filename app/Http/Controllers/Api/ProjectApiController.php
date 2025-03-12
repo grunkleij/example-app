@@ -103,7 +103,7 @@ class ProjectApiController extends Controller
     
         $project->delete();
     
-        return redirect('/')->with('success', 'Project deleted successfully!');
+        return redirect('/allproj')->with('success', 'Project deleted successfully!');
     }
     
     

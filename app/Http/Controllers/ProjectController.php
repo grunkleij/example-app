@@ -48,4 +48,11 @@ class ProjectController extends Controller {
         $project = Project::findOrFail($id);
         return response($project->photo)->header('Content-Type', 'image/jpeg');
     }
+
+
+    public function allproj(){
+        $project = Project::all();
+
+        return view('allproject',compact('project'));
+    }
     }

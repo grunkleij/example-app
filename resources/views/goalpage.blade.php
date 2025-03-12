@@ -7,11 +7,16 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}">
     <style>
+         body {
+            background: rgb(71, 161, 129);
+            background: linear-gradient(260deg, rgba(71, 161, 129, 0.9819327389158788) 0%, rgba(30, 189, 95, 0.12198876132484249) 0%, rgba(0, 212, 255, 0) 100%);
+        }
         .project-card {
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease-in-out;
-            z-index: 10; /* Ensure the whole card is clickable */
+            z-index: 10;
+            /* Ensure the whole card is clickable */
         }
 
         .project-card:hover {
@@ -77,14 +82,16 @@
 
             .project-text {
                 font-size: 0.8rem;
-            }}
+            }
+        }
 
 
-              .project-card {
+        .project-card {
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease-in-out;
-            z-index: 10; /* Ensure the whole card is clickable */
+            z-index: 10;
+            /* Ensure the whole card is clickable */
         }
 
         .project-card:hover {
@@ -150,12 +157,13 @@
 
             .project-text {
                 font-size: 0.8rem;
-            }}
+            }
+        }
 
-            .icontainer {
+        .icontainer {
             min-height: 100vh;
             padding: 20px;
-           
+
             z-index: -1;
         }
 
@@ -166,7 +174,7 @@
             max-width: 100%;
             padding: 20px;
             border-radius: 10px;
-           
+
             justify-content: center;
         }
 
@@ -226,10 +234,11 @@
 
         .extra-infoo {
             position: absolute;
+            color:white;
             bottom: -250px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgb(213, 247, 220);
+            /* background-color: rgb(213, 247, 220); */
             padding: 10px;
             border-radius: 5px;
             text-align: center;
@@ -268,8 +277,8 @@
     @include('layouts.herogoalpage', ['goalNumber' => $goal['id']]) 
     @include('layouts.aboutgoal', ['goalHeading' => $goal['heading'], 'goalabout' => $goal['about_goal']])
 
-    <div class="container mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
-        <h1 class="text-2xl font-bold mb-4 text-center">Projects</h1>
+    <div class="container mx-auto mt-8 p-6   rounded-lg">
+        <h1 class="text-4xl  mb-4 font-semibold text-center" style="color:#004d4d;">Projects</h1>
 
         @if($projects->isEmpty())
             <p class="text-red-500 text-center">No projects found for this SDG.</p>
@@ -277,7 +286,8 @@
             <!-- Responsive grid for projects -->
             <div id="regular-projects" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($projects->where('upcoming_project', false) as $index => $project)
-                    <a href="{{ route('projectpage.page', $project->id )}}"  class="project-card bg-white shadow-lg rounded-lg text-center">
+                    <a href="{{ route('projectpage.page', $project->id)}}"
+                        class="project-card  shadow-lg rounded-lg text-center">
                         @if($project->photo)
                             <div class="relative">
                                 <img src="data:image/jpeg;base64,{{ base64_encode($project->photo) }}" alt="Project Image"
@@ -294,17 +304,20 @@
 
             @if($projects->where('upcoming_project', false)->count() > 6)
                 <div class="text-center">
-                    <button id="show-more" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Show
-                        More</button>
-                    <button id="show-less" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 hidden">Show
-                        Less</button>
+                    <button id="show-more"
+                        class="w-24 mt-5 px-4  bg-green-500 text-white rounded-lg hover:bg-green-700 text-center">
+                        <img src="/images/downarrow.svg" alt="" class="w-6 h-7 mx-auto">
+                    </button>
+                    <button id="show-less" class="mt-5 w-24 px-4  bg-red-500 text-white rounded-lg hover:bg-red-700 hidden">
+                        <img src="/images/uparrow.svg" alt="" class="w-6 h-7 mx-auto">
+                    </button>
                 </div>
             @endif
 
-            <h2 class="text-xl font-bold mt-8 text-center">Upcoming Projects</h2>
+            <h2 class="text-3xl font-semibold mt-8 text-center " style="color:#004d4d;">Upcoming Projects</h2>
             <div class="grid grid-cols-2  sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($projects->where('upcoming_project', true) as $project)
-                    <div class="project-card bg-white shadow-lg rounded-lg text-center">
+                    <div class="project-card  shadow-lg rounded-lg text-center">
                         @if($project->photo)
                             <div class="relative">
                                 <img src="data:image/jpeg;base64,{{ base64_encode($project->photo) }}" alt="Project Image"
@@ -321,14 +334,36 @@
         @endif
     </div>
 
-    <div class="icontainer">
-        <div class="text-center text-5xl font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-transparent">Goals</div>
+    <div class="m-10">
+        <p class="text-2xl font-bold">Publications</p>
+        
+        @if (!empty($publications) && $publications->count() > 0)
+            @foreach ($publications as $publication)
+                <a href="{{ $publication->publication_link }}" target="_blank" 
+                    class="mx-4 text-lg text-green-500 hover:text-green-900">
+                    <hr>
+                    {{ $publication->title }}
+                    <hr>
+                </a>
+            @endforeach
+        @else
+            <p class="text-red-500">No publications available.</p>
+        @endif
+    </div>
+    
+
+
+
+
+    <div class="icontainer mt-24">
+        <div class="text-center text-5xl font-semibold  " style="color: #004d4d;">Goals</div>
         <div class="card-containerr">
             @foreach ($goals as $goal)
-                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd" style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
+                <a href="{{ route('goal.details', $goal['id']) }}" class="cardd"
+                    style="background-image: url('{{ asset($goal['backgroundImage'] ?? '') }}');">
                     <img class="icon-imagee" src="{{ asset($goal['iconImage']) }}" alt="Icon {{ $goal['id'] + 1 }}">
                     <div class="overlayy">
-                        <h2>{{ $goal['text'] }}</h2>
+                        {{-- <h2>{{ $goal['text'] }}</h2> --}}
                     </div>
                     <div class="extra-infoo">
                         <p>{{ $goal['text'] }}</p>
@@ -336,36 +371,36 @@
                 </a>
             @endforeach
         </div>
-    </div>
+    </div>  
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let showMoreBtn = document.getElementById('show-more');
-        let showLessBtn = document.getElementById('show-less');
-        let projectCards = document.querySelectorAll("#regular-projects .project-card");
+        document.addEventListener("DOMContentLoaded", function () {
+            let showMoreBtn = document.getElementById('show-more');
+            let showLessBtn = document.getElementById('show-less');
+            let projectCards = document.querySelectorAll("#regular-projects .project-card");
 
-        // Hide extra projects initially
-        projectCards.forEach((card, index) => {
-            if (index >= 6) card.classList.add('hidden');
-        });
-
-        // Show More Button Click
-        showMoreBtn?.addEventListener("click", function () {
-            projectCards.forEach(card => card.classList.remove("hidden"));
-            showMoreBtn.classList.add("hidden");
-            showLessBtn.classList.remove("hidden");
-        });
-
-        // Show Less Button Click
-        showLessBtn?.addEventListener("click", function () {
+            // Hide extra projects initially
             projectCards.forEach((card, index) => {
-                if (index >= 6) card.classList.add("hidden");
+                if (index >= 6) card.classList.add('hidden');
             });
-            showLessBtn.classList.add("hidden");
-            showMoreBtn.classList.remove("hidden");
+
+            // Show More Button Click
+            showMoreBtn?.addEventListener("click", function () {
+                projectCards.forEach(card => card.classList.remove("hidden"));
+                showMoreBtn.classList.add("hidden");
+                showLessBtn.classList.remove("hidden");
+            });
+
+            // Show Less Button Click
+            showLessBtn?.addEventListener("click", function () {
+                projectCards.forEach((card, index) => {
+                    if (index >= 6) card.classList.add("hidden");
+                });
+                showLessBtn.classList.add("hidden");
+                showMoreBtn.classList.remove("hidden");
+            });
         });
-    });
-</script>
+    </script>
 
 
 </body>

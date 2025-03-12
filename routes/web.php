@@ -16,10 +16,13 @@ use App\Models\Project;
 // Route::get("/goalpage", function(){
 //     return view("goalpage");
 // });
+Route::get('/allproject', [ProjectController::class, 'allproj']);
+
+
 Route::get('/', [SDGController::class, 'index'])->name('goals');
 Route::get('/goalpage', [SDGController::class, 'index'])->name('goals');
 Route::get('/goalpage/{id}', [SDGController::class, 'show'])->name('goal.details');
-Route::get('/projectpage/{id}',[SDGController::class,'showproject'])->name('projectpage.page');
+Route::get('/projectpage/{id}', [SDGController::class, 'showproject'])->name('projectpage.page');
 Route::resource('publications', controller: Publication::class);
 
 Route::post('/publications', [PublicationController::class, 'store'])->name('publications.store');
@@ -41,9 +44,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::get('/in/publication', function () {
-        $projects = Project::all(); 
+        $projects = Project::all();
         return view('addnewpublication', compact('projects'));
     })->name('publications.index');
+
+    Route::get('/allproj', [ProjectApiController::class, 'allIndex']);
+
 
     Route::get('/edit', function () {
         return view('edit');
@@ -64,7 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
@@ -76,12 +82,11 @@ require __DIR__.'/auth.php';
 //     $projects = Project::all(); // Fetch all projects from the database
 //     return view('addnewpublication', compact('projects'));
 // });
-// Route::get('/allproject', [ProjectApiController::class,'allIndex']);
 // Route::get('/edit', function () {
 //     return view('edit');
 // });
 
-// Route::post('/input',)
+// Route::post('/input',)f
 
 Route::post('/input', [ProjectController::class, 'store']);
 
@@ -97,6 +102,6 @@ Route::get('/projects/sdg/{id}', [ProjectApiController::class, 'getBySdg']);
 
 Route::get('/projects/{id}/edit', [ProjectApiController::class, 'edit'])->name('projects.edit');
 Route::get('/projects/{id}/delete', [ProjectApiController::class, 'delete'])->name('projects.delete');
-Route::post('/projects/{id}/update', [ProjectApiController::class, 'update'])->name('projects.update');    
+Route::post('/projects/{id}/update', [ProjectApiController::class, 'update'])->name('projects.update');
 
 
