@@ -7,20 +7,27 @@
     <title>Home</title>
     <link rel="stylesheet" href="{{ asset('css/herogoal.css') }}">
     <style>
-         body {
+        body {
             background: rgb(71, 161, 129);
             background: linear-gradient(260deg, rgba(71, 161, 129, 0.9819327389158788) 0%, rgba(30, 189, 95, 0.12198876132484249) 0%, rgba(0, 212, 255, 0) 100%);
         }
+
+
+
+
         .project-card {
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-            z-index: 10;
-            /* Ensure the whole card is clickable */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .project-card:hover {
             transform: scale(1.05);
+        }
+
+        .project-card.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-image {
@@ -126,6 +133,8 @@
             width: 80%;
             transition: transform 0.3s ease-in-out;
         }
+
+
 
         .project-card:hover .project-text {
             transform: translate(-50%, -50%) scale(1.2);
@@ -234,7 +243,7 @@
 
         .extra-infoo {
             position: absolute;
-            color:white;
+            color: white;
             bottom: -250px;
             left: 50%;
             transform: translateX(-50%);
@@ -274,10 +283,12 @@
 
 <body>
     @include('layouts.navbar')
-    @include('layouts.herogoalpage', ['goalNumber' => $goal['id']]) 
+    @include('layouts.herogoalpage', ['goalNumber' => $goal['id']])
     @include('layouts.aboutgoal', ['goalHeading' => $goal['heading'], 'goalabout' => $goal['about_goal']])
 
-    <div class="container mx-auto mt-8 p-6   rounded-lg">
+    <div class=" container mx-auto mt-8 p-6   rounded-lg" style="background-image: radial-gradient(rgba(0, 77, 77, 0.06) 2px, transparent 2px);
+background-size: 10px 10px;
+background-color: rgba(234, 234, 234, 0.08); ">
         <h1 class="text-4xl  mb-4 font-semibold text-center" style="color:#004d4d;">Projects</h1>
 
         @if($projects->isEmpty())
@@ -336,10 +347,10 @@
 
     <div class="m-10">
         <p class="text-2xl font-bold">Publications</p>
-        
+
         @if (!empty($publications) && $publications->count() > 0)
             @foreach ($publications as $publication)
-                <a href="{{ $publication->publication_link }}" target="_blank" 
+                <a href="{{ $publication->publication_link }}" target="_blank"
                     class="mx-4 text-lg text-green-500 hover:text-green-900">
                     <hr>
                     {{ $publication->title }}
@@ -350,7 +361,7 @@
             <p class="text-red-500">No publications available.</p>
         @endif
     </div>
-    
+
 
 
 
@@ -371,9 +382,25 @@
                 </a>
             @endforeach
         </div>
-    </div>  
+    </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const projectCards = document.querySelectorAll(".project-card");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.2 }); // Triggers when 20% of the element is visible
+
+            projectCards.forEach(card => observer.observe(card));
+        });
+
+
+
         document.addEventListener("DOMContentLoaded", function () {
             let showMoreBtn = document.getElementById('show-more');
             let showLessBtn = document.getElementById('show-less');

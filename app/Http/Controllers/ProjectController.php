@@ -37,6 +37,8 @@ class ProjectController extends Controller {
             ]);
     
             return back()->with('success', 'Project saved successfully!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
             Log::error("Insert failed: " . $e->getMessage());
             return back()->with('error', 'Something went wrong!');

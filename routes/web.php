@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SDGController;
 use App\Models\Publication;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Api\ProjectApiController;
@@ -54,6 +56,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/edit', function () {
         return view('edit');
     });
+
+    Route::post('/upload-image',[ImageController::class,'upload']);
 
     Route::post('/input', [ProjectController::class, 'store']);
 

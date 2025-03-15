@@ -211,7 +211,7 @@
 
 <body>
     @include('layouts.navbar')
-    @include('layouts.herogoalpage', ['goalNumber' => 3]) 
+    @include('layouts.herogoalpage', ['goalNumber' => 3,'projectname'=>$project->project_name]) 
     @include('layouts.aboutproject', ['goalHeading' => $project['project_name'], 'goalabout' => $project['description']])
     <div class="m-20">
         <h2 class=" text-2Xl font-bold bg-gradient-to-br from-emerald-500 to-teal-600 bg-clip-text text-[#004d4d]" style="color:#004d4d;">

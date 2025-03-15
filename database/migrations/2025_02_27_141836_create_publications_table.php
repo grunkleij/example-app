@@ -10,11 +10,11 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('publication_link');
-            $table->unsignedBigInteger('sdg'); // Foreign key reference to SDG in Projects
+            $table->unsignedBigInteger('sdg'); // Foreign key reference to Projects table
             $table->timestamps();
 
-            // Foreign Key Constraint
-            $table->foreign('sdg')->references('sdg')->on('projects')->onDelete('cascade');
+            // Correct Foreign Key Constraint
+            $table->foreign('sdg')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

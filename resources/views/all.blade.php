@@ -6,7 +6,34 @@
     <title>Project List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
-<body class="bg-gray-100 p-6">
+<body class="bg-gray-100 ">
+    <nav class="bg-gray-800 text-white py-3 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="text-xl font-bold">Rajagiri SDG </a>
+
+            <div class="flex items-center space-x-4">
+                <a href="{{ url('/allproj') }}" class="hover:underline">All Projects</a>
+
+                @auth
+                    <span class="text-gray-300">Hello, {{ auth()->user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white">
+                            Logout
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded">
+                        Login
+                    </a>
+                @endauth
+            </div>
+        </div>
+    </nav>
+
+
+
+
     <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
         <h2 class="text-2xl font-bold text-center mb-4">Project List</h2>
         

@@ -4,25 +4,54 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel</title>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 
 <body class="">
     {{-- @include('layouts.loginnavbar') --}}
-    @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+
+    <nav class="bg-gray-800 text-white py-3 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="text-xl font-bold">Rajagiri SDG </a>
+
+            <div class="flex items-center space-x-4">
+                <a href="{{ url('/allproj') }}" class="hover:underline">All Projects</a>
+                <a href="{{ url('/in/publication') }}" class="hover:underline">Add Publication</a>
+
+                @auth
+                    <span class="text-gray-300">Hello, {{ auth()->user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 px-3 py-1 rounded text-white">
+                            Logout
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded">
+                        Login
+                    </a>
+                @endauth
+            </div>
+        </div>
+    </nav>
+
+
     <div class="w-[50%] mx-auto max-w-2xl bg-white shadow-lg rounded-lg p-6 ">
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
 
 
@@ -104,31 +133,107 @@
         </form>
     </div>
     <script>
-        const editor = new EditorJS({
-            holder: 'editorjs',
-            tools: {
-                header: {
-                    class: Header,
-                    inlineToolbar: true,
-                    config: { levels: [2, 3, 4], defaultLevel: 2 }
-                },
-                paragraph: {
-                    class: Paragraph,
-                    inlineToolbar: true,
-                    config: { preserveBlank: true }
-                }
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!document.getElementById('editorjs')) {
+                console.error("Editor.js container not found!");
+                return;
             }
-        });
-        document.querySelector('form').addEventListener('submit', async function (event) {
-            event.preventDefault();
-            editor.save().then((outputData) => {
-                document.getElementById('description').value = JSON.stringify(outputData);
-                event.target.submit();
-            }).catch((error) => {
-                console.log('Saving failed: ', error);
+
+            let editor = new EditorJS({
+                holder: 'editorjs',
+                tools: {
+                    header: {
+                        class: Header,
+                        inlineToolbar: true,
+                        config: { levels: [2, 3, 4], defaultLevel: 2 }
+                    },
+                    paragraph: {
+                        class: Paragraph,
+                        inlineToolbar: true,
+                        config: { preserveBlank: true }
+                    },
+                    image: {
+                        class: ImageTool,
+                        config: {
+                            endpoints: {
+                                byFile: '/upload-image', // Laravel route for file uploads
+                            },
+                            additionalRequestHeaders: {
+                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            },
+                            uploader: {
+                                async uploadByFile(file) {
+                                    let formData = new FormData();
+                                    formData.append('image', file);
+
+                                    return fetch('/upload-image', {
+                                        method: 'POST',
+                                        body: formData,
+                                        headers: {
+                                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                        }
+                                    })
+                                        .then(response => response.json())
+                                        .then(result => {
+                                            if (result.success) {
+                                                return { success: 1, file: { url: result.file.url } };
+                                            } else {
+                                                return { success: 0, error: { message: result.error.message } };
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error("Upload failed", error);
+                                            return { success: 0, error: { message: "Upload failed" } };
+                                        });
+                                },
+                                async uploadByUrl(url) {
+                                    try {
+                                        let response = await fetch(url);
+                                        let blob = await response.blob();
+                                        let file = new File([blob], "pasted_image.jpg", { type: blob.type });
+
+                                        return this.uploadByFile(file);
+                                    } catch (error) {
+                                        console.error("Error processing pasted image:", error);
+                                        return { success: 0, error: { message: "Failed to upload pasted image" } };
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                onReady: () => {
+                    console.log("Editor.js is ready!");
+                },
+                onChange: () => {
+                    editor.save().then((outputData) => {
+                        document.getElementById('description').value = JSON.stringify(outputData);
+                    }).catch((error) => {
+                        console.error('Saving failed: ', error);
+                    });
+                }
+            });
+
+            // Ensure form submission waits for editor data
+            document.querySelector('form').addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                editor.save().then((outputData) => {
+                    document.getElementById('description').value = JSON.stringify(outputData);
+
+                    if (document.getElementById('description').value.trim() === "") {
+                        alert("Please add some content before submitting!");
+                        return;
+                    }
+
+                    this.submit();
+                }).catch((error) => {
+                    console.error('Saving failed: ', error);
+                });
             });
         });
     </script>
+
 </body>
 
 </html>

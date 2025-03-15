@@ -1,6 +1,7 @@
 <div class="hero hero flex h-screen/3 items-center justify-center">
     <div class="">
-    <div class="hero_content">
+        <div class="hero_content">
+
 
             <h1 class="heading-hero text-focus-in text-white">
                 Rajagiri
@@ -8,6 +9,7 @@
                 <span>Sustainable Development Goals</span>
             </h1>
             <div class="explore">
+
                 <p class="tst">
                     <!-- <button onclick="scrollToTest()" class="relative btn-hero">EXPLORE</button> 
                     Go to <strong>Goals.</strong> -->
@@ -123,7 +125,17 @@
                 </p>
             </div>
             {{-- here --}}
+
+
+
+            
+
         </div>
+
+
+
+
+
     </div>
     <div class="picture">
         <p></p>
