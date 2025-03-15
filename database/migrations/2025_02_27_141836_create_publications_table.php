@@ -13,8 +13,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('sdg'); // Foreign key reference to Projects table
             $table->timestamps();
 
-            // Correct Foreign Key Constraint
-            $table->foreign('sdg')->references('id')->on('projects')->onDelete('cascade');
+            
         });
     }
 
